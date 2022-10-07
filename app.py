@@ -8,7 +8,6 @@ client = pymongo.MongoClient("mongodb+srv://gayathri:Sairambaba@cluster1.davwpcs
 db = client['mydatabase']
 register_collection = db['registration']
 
-
 @app.route('/')
 def header():
     return render_template('home.html')
@@ -16,18 +15,27 @@ def header():
 @app.route("/home", methods=['post', 'get'])
 def index():
     if request.method == "POST":
-        Name = request.form.get("Name")
+        Name = request.form.get("name")
         dob = request.form.get("Date of Birth")
         gender = request.form.get("Gender")
         country = request.form.get("Country")
         degree = request.form.get("Degree")
-    else:
-        user_input = {'name': Name, 'Date of Birth': dob, 'Gender': gender, 'Country':country, 'Degree':degree}
-        register_collection.insert_one(user_input)
-        record_data = register_collection.find_one({"_id": 0})
-        return render_template('home.html')
-    return render_template('home.html')
+        user_found = register_collection.find_one({"name": Name})
+        if user_found:
+            message = 'There already is a user by that name'
+            return render_template('home.html', message=message)
+        else:
+            user_input = {
+                'name': Name, 
+                'Date of Birth': dob, 
+                'Gender': gender, 
+                'Country':country, 
+                'Degree':degree
+                }
+            register_collection.insert_one(user_input)
+            record_data = register_collection.find_one({"name": Name})
+            new_reg = record_data['name']
+    return render_template('home.html',data=new_reg)
 
-#end of code to run it
-if __name__ == "__main__":
+if __name__ == "__main__":  
   app.run(debug=True)
