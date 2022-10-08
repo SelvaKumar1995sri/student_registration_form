@@ -12,29 +12,31 @@ register_collection = db['registration']
 def header():
     return render_template('home.html')
 
-@app.route("/home", methods=['post', 'get'])
+@app.route("/", methods=['post', 'get'])
 def index():
     if request.method == "POST":
-        Name = request.form.get("name")
+        Name = request.form.get("Name")
         dob = request.form.get("Date of Birth")
         gender = request.form.get("Gender")
         country = request.form.get("Country")
         degree = request.form.get("Degree")
-        user_found = register_collection.find_one({"name": Name})
+        user_found = register_collection.find_one({"Name": Name})
         if user_found:
             message = 'There already is a user by that name'
             return render_template('home.html', message=message)
         else:
             user_input = {
-                'name': Name, 
+                'Name': Name, 
                 'Date of Birth': dob, 
                 'Gender': gender, 
                 'Country':country, 
                 'Degree':degree
                 }
             register_collection.insert_one(user_input)
-            record_data = register_collection.find_one({"name": Name})
+            record_data = register_collection.find_one({"Name": Name})
             new_reg = record_data['name']
+            return render_template('home.html',data=new_reg)
+
     return render_template('home.html',data=new_reg)
 
 if __name__ == "__main__":  
