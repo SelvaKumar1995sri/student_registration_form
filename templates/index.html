@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    table, td {
+        border: 2px solid rgb(6, 236, 252);
+        border-collapse: collapse;
+        background-color: #010c06;
+      }
+      .reg_header {
+        background-color: rgb(1, 12, 2);
+      }
+</style>      
+</head>
+<body>
+    <form action="" method="POST">
+<table style="width:30%" align="center" >
+    <th style="color:chartreuse" class="reg_header" colspan="2" align="center">
+        Registration page</th>  
+    <tr>
+        <td align="center" style="color:aqua">fullname</td>
+        <td align="center"><input type="text" id="fullname" name="fullname" required></td>  
+    </tr>
+    <tr>
+        <td align="center" style="color:aqua">dob</td>
+        <td align="center"><input type="date" name="dob" required></td>
+    </tr>
+    <tr>
+        <td align="center" style="color:aqua">gender</td>
+        <td align="center"><input type="radio" id="male" name="gender" value="male" required>
+        <label style="color:aqua" for="male">male</label>
+        <input style="color:aqua" type="radio" id="female" name="gender" value="female">
+        <label style="color:aqua" for="female">female</label><br></td>    
+    </tr>
+    <tr>
+    <td align="center"><label style="color:aqua">Country</label></td>>
+            <td align="center"><select name="city" required>
+                <option></option>
+                <option value="India">India</option>
+                <option value="South Africa">South Africa</option>
+                <option value="America">America</option>
+                <option value="Japan">Japan</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td align="center"><label style="color:aqua">degree</label></td>>
+            <td align="center"><select name="degree" required>
+                <option></option>
+                <option value="bsc">bsc</option>
+                <option value="bio tech">bio tech</option>
+                <option value="bcom">bcom</option>
+            </select></td>  
+        </tr>
+        <td colspan="2" align="center">
+            <input style="color:crimson" type="reset" value="reset">
+            <input style="color:rgb(20, 220, 63)" type="submit" value="submit"></td>
+
+</table>
+</form>
+</body>
+</html>
