@@ -12,7 +12,7 @@ records = db.registry
 @app.route("/", methods=['post', 'get'])
 def index():
     
-    if request.method == "POST":
+    if request.method == "POST":    
         name = request.form.get("fullname")
         dob = request.form.get("dob")
         gender = request.form.get("gender")
